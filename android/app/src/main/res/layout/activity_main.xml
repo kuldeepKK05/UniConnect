@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!-- AppBar with collapsing behavior -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:paddingStart="16dp"
+            android:paddingEnd="8dp"
+            app:title="UniConnect"
+            app:titleTextAppearance="@style/TextAppearance.UniConnect.Title"
+            app:menu="@menu/menu_main" />
+
+        <!-- Sort chips -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:paddingBottom="8dp">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupSort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                app:singleSelection="true"
+                app:selectionRequired="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipLatest"
+                    style="@style/Widget.UniConnect.FilterChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:tag="LATEST"
+                    android:text="Latest" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipTrending"
+                    style="@style/Widget.UniConnect.FilterChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag="TRENDING"
+                    android:text="Trending 🔥" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipNearest"
+                    style="@style/Widget.UniConnect.FilterChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag="NEAREST"
+                    android:text="Nearest 📍" />
+
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <!-- Scope + Filter row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="8dp">
+
+            <HorizontalScrollView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scrollbars="none">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupScope"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    app:singleSelection="true"
+                    app:selectionRequired="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipNearMe"
+                        style="@style/Widget.UniConnect.ScopeChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:tag="NEAR_ME"
+                        android:text="Near Me" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipSameCity"
+                        style="@style/Widget.UniConnect.ScopeChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="SAME_CITY"
+                        android:text="Same City" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipNearby"
+                        style="@style/Widget.UniConnect.ScopeChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="NEARBY"
+                        android:text="Nearby" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipGlobal"
+                        style="@style/Widget.UniConnect.ScopeChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="GLOBAL"
+                        android:text="Global 🌍" />
+
+                </com.google.android.material.chip.ChipGroup>
+            </HorizontalScrollView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnFilter"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginEnd="12dp"
+                android:text="Filter"
+                app:icon="@drawable/ic_filter"
+                app:iconSize="16dp" />
+        </LinearLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Main content -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Feed RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingTop="8dp"
+                android:paddingBottom="80dp"
+                android:scrollbars="none" />
+
+            <!-- Loading shimmer -->
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/layoutLoading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <include layout="@layout/item_shimmer_post" />
+                    <include layout="@layout/item_shimmer_post" />
+                    <include layout="@layout/item_shimmer_post" />
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <!-- Error state -->
+            <LinearLayout
+                android:id="@+id/layoutError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="32dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_error_state"
+                    android:contentDescription="Error" />
+
+                <TextView
+                    android:id="@+id/tvError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Couldn't load posts"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                    android:textColor="@color/on_surface" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Check your connection and try again"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    android:textColor="@color/on_surface_variant" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRetry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="Retry" />
+            </LinearLayout>
+
+            <!-- Empty state -->
+            <LinearLayout
+                android:id="@+id/layoutEmpty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="32dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_empty_feed"
+                    android:contentDescription="No posts" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="No posts in this area"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Try expanding your search radius\nor switch to Global view"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    android:textColor="@color/on_surface_variant" />
+            </LinearLayout>
+
+        </FrameLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <!-- Create post FAB (admin only) -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fabCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="24dp"
+        android:layout_marginBottom="80dp"
+        android:text="Post Opportunity"
+        android:visibility="gone"
+        app:icon="@drawable/ic_add"
+        app:layout_anchorGravity="bottom|end" />
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/surface"
+        app:elevation="8dp"
+        app:menu="@menu/menu_bottom_nav" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

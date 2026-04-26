@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UniConnect</string>
+    <string name="default_web_client_id">YOUR_GOOGLE_WEB_CLIENT_ID</string>
+
+    <!-- Feed -->
+    <string name="feed_title">Discover Opportunities</string>
+    <string name="filter_near_me">Near Me</string>
+    <string name="filter_same_city">Same City</string>
+    <string name="filter_nearby">Nearby</string>
+    <string name="filter_global">Global 🌍</string>
+    <string name="sort_latest">Latest</string>
+    <string name="sort_trending">Trending 🔥</string>
+    <string name="sort_nearest">Nearest 📍</string>
+
+    <!-- Post -->
+    <string name="apply_now">Apply Now →</string>
+    <string name="upvote">Upvote</string>
+    <string name="save">Save</string>
+    <string name="share">Share</string>
+    <string name="comment">Comment</string>
+    <string name="reply">Reply</string>
+    <string name="deadline_prefix">Deadline: </string>
+    <string name="distance_away_format">%1$.0f km away</string>
+
+    <!-- Auth -->
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="continue_google">Continue with Google</string>
+    <string name="email_hint">Email address</string>
+    <string name="password_hint">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="no_account">Don\'t have an account? </string>
+    <string name="already_account">Already have an account? </string>
+
+    <!-- Roles -->
+    <string name="role_student">Student</string>
+    <string name="role_university">University / Admin</string>
+
+    <!-- Categories -->
+    <string name="cat_hackathon">Hackathon</string>
+    <string name="cat_internship">Internship</string>
+    <string name="cat_summer">Summer Course</string>
+
+    <!-- Modes -->
+    <string name="mode_onground">On-Ground</string>
+    <string name="mode_virtual">Virtual</string>
+    <string name="mode_wfh">Work From Home</string>
+
+    <!-- Empty/Error states -->
+    <string name="no_posts">No posts in this area</string>
+    <string name="no_posts_sub">Try expanding your search radius or switch to Global view</string>
+    <string name="error_load">Couldn\'t load posts</string>
+    <string name="error_network">Network error. Check your connection.</string>
+    <string name="retry">Retry</string>
+
+    <!-- Navigation -->
+    <string name="nav_feed">Feed</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_saved">Saved</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Location -->
+    <string name="location_permission_title">Enable Location</string>
+    <string name="location_permission_message">UniConnect uses your location to show nearby opportunities. You can change this in Settings.</string>
+    <string name="location_permission_allow">Allow</string>
+    <string name="location_permission_deny">Skip</string>
+    <string name="pick_city_manually">Choose your city manually</string>
+
+    <!-- Create post -->
+    <string name="create_opportunity">Create Opportunity</string>
+    <string name="publish">Publish</string>
+    <string name="title_hint">Opportunity title</string>
+    <string name="description_hint">Describe the opportunity…</string>
+    <string name="apply_link_hint">Application URL</string>
+    <string name="pick_deadline">Pick deadline</string>
+
+    <!-- Accessibility -->
+    <string name="cd_post_banner">Post banner image</string>
+    <string name="cd_upvote">Upvote this post</string>
+    <string name="cd_save">Save this post</string>
+    <string name="cd_share">Share this post</string>
+    <string name="cd_back">Go back</string>
+    <string name="cd_avatar">User avatar</string>
+</resources>

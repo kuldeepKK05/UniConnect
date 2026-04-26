@@ -1,0 +1,71 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /v1
+
+spring:
+  application:
+    name: uniconnect-backend
+
+  # PostgreSQL
+  datasource:
+    url: jdbc:postgresql://localhost:5432/uniconnect
+    username: ${DB_USER:uniconnect}
+    password: ${DB_PASS:secret}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        default_schema: public
+
+  # Cassandra
+  cassandra:
+    contact-points: ${CASSANDRA_HOST:localhost}
+    port: 9042
+    keyspace-name: uniconnect
+    local-datacenter: datacenter1
+    schema-action: CREATE_IF_NOT_EXISTS
+    username: ${CASSANDRA_USER:cassandra}
+    password: ${CASSANDRA_PASS:cassandra}
+
+# JWT
+app:
+  jwt:
+    secret: ${JWT_SECRET:REPLACE_WITH_256BIT_BASE64_SECRET_IN_PRODUCTION}
+    expiration-ms: 86400000        # 24 h
+    refresh-expiration-ms: 604800000  # 7 days
+
+  # Google OAuth
+  google:
+    client-id: ${GOOGLE_CLIENT_ID:YOUR_GOOGLE_CLIENT_ID}
+
+  # Feed pagination
+  feed:
+    default-page-size: 15
+    max-page-size: 50
+    default-radius-km: 50
+
+  # Admin email domains (auto-verified)
+  verified-domains:
+    - iitb.ac.in
+    - iitd.ac.in
+    - bits-pilani.ac.in
+    - du.ac.in
+    - mit.edu
+    - stanford.edu
+
+logging:
+  level:
+    com.uniconnect: DEBUG
+    org.springframework.security: WARN
+    org.hibernate.SQL: WARN

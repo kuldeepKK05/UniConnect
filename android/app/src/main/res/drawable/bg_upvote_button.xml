@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- bg_upvote_button.xml - circular tonal button for upvote in detail view -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/primary_container">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/surface_variant" />
+        </shape>
+    </item>
+</ripple>

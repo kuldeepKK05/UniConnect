@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Brand -->
+    <color name="brand_primary">#1A56DB</color>
+    <color name="brand_secondary">#7E3AF2</color>
+    <color name="brand_accent">#0E9F6E</color>
+
+    <!-- Material3 Light -->
+    <color name="primary">#1A56DB</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="primary_container">#D5E3FF</color>
+    <color name="on_primary_container">#001848</color>
+
+    <color name="secondary">#7E3AF2</color>
+    <color name="on_secondary">#FFFFFF</color>
+    <color name="secondary_container">#EDE9FE</color>
+    <color name="on_secondary_container">#2E0470</color>
+
+    <color name="tertiary">#0E9F6E</color>
+    <color name="on_tertiary">#FFFFFF</color>
+    <color name="tertiary_container">#CCFCE8</color>
+    <color name="on_tertiary_container">#003824</color>
+
+    <color name="error">#DC2626</color>
+    <color name="on_error">#FFFFFF</color>
+    <color name="error_container">#FEE2E2</color>
+
+    <color name="background">#F8FAFF</color>
+    <color name="on_background">#0F1729</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="on_surface">#0F1729</color>
+    <color name="on_surface_variant">#64748B</color>
+    <color name="surface_variant">#F1F5F9</color>
+    <color name="outline">#CBD5E1</color>
+    <color name="outline_variant">#E2E8F0</color>
+
+    <!-- Material3 Dark (auto-resolved by DayNight theme) -->
+    <color name="primary_dark">#A5C8FF</color>
+    <color name="background_dark">#0A0F1E</color>
+    <color name="surface_dark">#111827</color>
+    <color name="on_surface_dark">#E2E8F0</color>
+
+    <!-- Chip colors -->
+    <color name="chip_hackathon">#EDE9FE</color>
+    <color name="chip_hackathon_text">#5B21B6</color>
+    <color name="chip_internship">#D1FAE5</color>
+    <color name="chip_internship_text">#065F46</color>
+    <color name="chip_course">#FEF3C7</color>
+    <color name="chip_course_text">#92400E</color>
+    <color name="chip_virtual">#DBEAFE</color>
+    <color name="chip_virtual_text">#1E40AF</color>
+    <color name="chip_onground">#FCE7F3</color>
+    <color name="chip_onground_text">#9D174D</color>
+
+    <!-- Distance badge -->
+    <color name="distance_bg">#EFF6FF</color>
+    <color name="distance_text">#1D4ED8</color>
+
+    <!-- Upvote active -->
+    <color name="upvote_active">#F97316</color>
+
+    <!-- Shimmer -->
+    <color name="shimmer_base">#E2E8F0</color>
+    <color name="shimmer_highlight">#F8FAFC</color>
+
+    <!-- Splash gradient -->
+    <color name="splash_start">#1A56DB</color>
+    <color name="splash_end">#7E3AF2</color>
+
+</resources>

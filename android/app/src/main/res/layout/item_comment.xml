@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="12dp"
+    android:paddingBottom="4dp">
+
+    <!-- Thread indent bar (shown for replies) -->
+    <View
+        android:id="@+id/indentBar"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:background="@color/outline_variant"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivAvatar"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_default_avatar"
+        app:layout_constraintStart_toEndOf="@id/indentBar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvAuthor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="16dp"
+        android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+        android:textColor="@color/on_surface"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivAvatar"
+        app:layout_constraintTop_toTopOf="@id/ivAvatar"
+        tools:text="John Doe" />
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
+        android:textColor="@color/on_surface_variant"
+        app:layout_constraintBottom_toBottomOf="@id/ivAvatar"
+        app:layout_constraintStart_toEndOf="@id/ivAvatar"
+        app:layout_constraintTop_toBottomOf="@id/tvAuthor"
+        tools:text="2 hours ago" />
+
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:lineSpacingMultiplier="1.4"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/on_surface"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivAvatar"
+        tools:text="This is a great opportunity! I applied last year and got selected." />
+
+    <!-- Action row: like + reply -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvContent">
+
+        <ImageButton
+            android:id="@+id/btnLike"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_heart_outline"
+            android:contentDescription="Like comment" />
+
+        <TextView
+            android:id="@+id/tvLikes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
+            android:textColor="@color/on_surface_variant"
+            tools:text="12" />
+
+        <TextView
+            android:id="@+id/tvReply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:text="Reply"
+            android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+            android:textColor="@color/primary" />
+
+    </LinearLayout>
+
+    <!-- Bottom divider -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/outline_variant"
+        android:alpha="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvContent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

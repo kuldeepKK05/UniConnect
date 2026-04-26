@@ -1,0 +1,18 @@
+## Android Studio / Gradle
+.gradle/
+build/
+local.properties
+*.iml
+.idea/
+*.keystore
+!debug.keystore
+
+## Google Services (contains API keys – never commit the real one)
+google-services.json
+
+## OS files
+.DS_Store
+Thumbs.db
+
+## Proguard mapping
+app/proguard-mapping.txt

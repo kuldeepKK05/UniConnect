@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme -->
+    <style name="Theme.UniConnect" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorPrimaryContainer">@color/primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/on_primary_container</item>
+
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/on_secondary</item>
+        <item name="colorSecondaryContainer">@color/secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/on_secondary_container</item>
+
+        <!-- Tertiary brand color -->
+        <item name="colorTertiary">@color/tertiary</item>
+        <item name="colorOnTertiary">@color/on_tertiary</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <!-- Ripple -->
+        <item name="rippleColor">@color/primary_container</item>
+
+        <!-- Navigation bar -->
+        <item name="android:navigationBarColor">@color/surface</item>
+
+        <!-- Shapes -->
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.UniConnect.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.UniConnect.Large</item>
+    </style>
+
+    <!-- Splash theme (no action bar, gradient bg) -->
+    <style name="Theme.UniConnect.Splash" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <!-- Shape appearances -->
+    <style name="ShapeAppearance.UniConnect.Medium" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="ShapeAppearance.UniConnect.Large" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <!-- Text appearances -->
+    <style name="TextAppearance.UniConnect.Title" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+
+    <!-- Widget styles -->
+    <style name="Widget.UniConnect.FilterChip" parent="Widget.Material3.Chip.Filter">
+        <item name="android:textSize">13sp</item>
+        <item name="chipCornerRadius">20dp</item>
+    </style>
+
+    <style name="Widget.UniConnect.ScopeChip" parent="Widget.Material3.Chip.Filter">
+        <item name="android:textSize">12sp</item>
+        <item name="chipCornerRadius">20dp</item>
+        <item name="chipBackgroundColor">@color/surface_variant</item>
+    </style>
+
+    <style name="Widget.UniConnect.CategoryChip" parent="Widget.Material3.Chip.Assist">
+        <item name="android:textSize">11sp</item>
+        <item name="chipCornerRadius">6dp</item>
+        <item name="chipBackgroundColor">@color/chip_hackathon</item>
+        <item name="android:textColor">@color/chip_hackathon_text</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="chipMinHeight">26dp</item>
+        <item name="android:clickable">false</item>
+        <item name="android:focusable">false</item>
+    </style>
+
+    <style name="Widget.UniConnect.ModeChip" parent="Widget.Material3.Chip.Assist">
+        <item name="android:textSize">11sp</item>
+        <item name="chipCornerRadius">6dp</item>
+        <item name="chipBackgroundColor">@color/chip_virtual</item>
+        <item name="android:textColor">@color/chip_virtual_text</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="chipMinHeight">26dp</item>
+        <item name="android:clickable">false</item>
+        <item name="android:focusable">false</item>
+    </style>
+
+</resources>
