@@ -7,6 +7,9 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -42,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     private ApiService apiService;
     private SessionManager session;
     private GoogleSignInClient googleSignInClient;
-    private static final int RC_SIGN_IN = 9001;
+    private ActivityResultLauncher<Intent> googleSignInLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,23 @@ public class LoginActivity extends AppCompatActivity {
         apiService = RetrofitClient.getInstance(this).getApiService();
         initViews();
         setupGoogleSignIn();
+
+        googleSignInLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(result.getData());
+                        try {
+                            GoogleSignInAccount account = task.getResult(ApiException.class);
+                            if (account != null) {
+                                loginWithGoogleToken(account.getIdToken());
+                            }
+                        } catch (ApiException e) {
+                            Toast.makeText(this, "Google sign in failed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+        );
     }
 
     private void initViews() {
@@ -85,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void attemptLogin() {
+        if (etEmail.getText() == null || etPassword.getText() == null) return;
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
@@ -92,9 +113,9 @@ public class LoginActivity extends AppCompatActivity {
 
         setLoading(true);
         LoginRequest request = new LoginRequest(email, password);
-        apiService.login(request).enqueue(new Callback<ApiResponse<AuthResponse>>() {
+        apiService.login(request).enqueue(new Callback<>() {
             @Override
-            public void onResponse(Call<ApiResponse<AuthResponse>> call, Response<ApiResponse<AuthResponse>> response) {
+            public void onResponse(@NonNull Call<ApiResponse<AuthResponse>> call, @NonNull Response<ApiResponse<AuthResponse>> response) {
                 setLoading(false);
                 if (response.isSuccessful() && response.body() != null) {
                     handleAuthSuccess(response.body().getData());
@@ -104,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ApiResponse<AuthResponse>> call, Throwable t) {
+            public void onFailure(@NonNull Call<ApiResponse<AuthResponse>> call, @NonNull Throwable t) {
                 setLoading(false);
                 Snackbar.make(btnLogin, "Network error: " + t.getMessage(), Snackbar.LENGTH_LONG).show();
             }
@@ -113,31 +134,17 @@ public class LoginActivity extends AppCompatActivity {
 
     private void signInWithGoogle() {
         Intent signInIntent = googleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        googleSignInLauncher.launch(signInIntent);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                firebaseAuthWithGoogle(account.getIdToken());
-            } catch (ApiException e) {
-                Toast.makeText(this, "Google sign in failed", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    private void firebaseAuthWithGoogle(String idToken) {
+    private void loginWithGoogleToken(String idToken) {
         setLoading(true);
         Map<String, String> body = new HashMap<>();
         body.put("idToken", idToken);
 
-        apiService.googleLogin(body).enqueue(new Callback<ApiResponse<AuthResponse>>() {
+        apiService.googleLogin(body).enqueue(new Callback<>() {
             @Override
-            public void onResponse(Call<ApiResponse<AuthResponse>> call, Response<ApiResponse<AuthResponse>> response) {
+            public void onResponse(@NonNull Call<ApiResponse<AuthResponse>> call, @NonNull Response<ApiResponse<AuthResponse>> response) {
                 setLoading(false);
                 if (response.isSuccessful() && response.body() != null) {
                     handleAuthSuccess(response.body().getData());
@@ -147,7 +154,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ApiResponse<AuthResponse>> call, Throwable t) {
+            public void onFailure(@NonNull Call<ApiResponse<AuthResponse>> call, @NonNull Throwable t) {
                 setLoading(false);
                 Toast.makeText(LoginActivity.this, "Network error", Toast.LENGTH_SHORT).show();
             }
